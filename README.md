@@ -1,5 +1,7 @@
 # monetary.js
 
+[![Build Status][status]][travis]
+
 > Responsible money handling in JavaScript!
 
 ## Important note
@@ -16,3 +18,6 @@ I appreciate any kind of help.
 Out of the need for a JavaScript money handling library,
 `monetary.js` was introduced to simplify parsing, validation, manipulation and
 displaying of money amounts in different currencies.
+
+[status]: https://travis-ci.org/davidknezic/monetary.svg
+[travis]: https://travis-ci.org/davidknezic/monetary
