@@ -1,0 +1,26 @@
+{
+  "name": "monetary",
+  "description": "Responsible money handling in JavaScript!",
+  "keywords": [
+    "money",
+    "monetary",
+    "currency"
+  ],
+  "main": "",
+  "license": "MIT",
+  "authors": [
+    "David Knezic <davidknezic@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davidknezic/monetary.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "ignore": [
+    "**/.*",
+    "spec"
+  ]
+}

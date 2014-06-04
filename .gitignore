@@ -1,0 +1,11 @@
+# mac os x
+.DS_Store/
+
+# npm
+node_modules/
+
+# grunt
+.grunt/
+
+# jasmine
+_SpecRunner.html
