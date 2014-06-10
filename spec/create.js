@@ -13,17 +13,17 @@ describe("Create new monetary", function () {
     expect(m.amount()).toBe(200.20);
   });
 
-  it("should create with string and locale". function () {
+  it("should create with string and locale", function () {
     var m = monetary("Fr. 75.-", "ch-de");
 
-    expect(m.currency()).toBe("CHF"));
+    expect(m.currency()).toBe("CHF");
     expect(m.amount()).toBe(75.00);
   });
 
   it("should create with array and locale", function () {
     var m = monetary(["Fr", 75.00], "ch-de");
 
-    expect(m.currency()).toBe("CHF"));
+    expect(m.currency()).toBe("CHF");
     expect(m.amount()).toBe(75.00);
   });
 
