@@ -18,9 +18,13 @@ module.exports = function (grunt) {
         src: ["currencies/*.js"],
         dest: "dist/monetary.currencies.js"
       },
+      locales: {
+        src: ["locales/*.js"],
+        dest: "dist/monetary.locales.js"
+      },
       full: {
-        src: ["monetary.js", "currencies/*.js"],
-        dest: "dist/monetary-with-currencies.js"
+        src: ["monetary.js", "currencies/*.js", "locales/*.js"],
+        dest: "dist/monetary.full.js"
       }
     },
 
@@ -32,7 +36,8 @@ module.exports = function (grunt) {
         files: {
           "dist/monetary.min.js": "dist/monetary.js",
           "dist/monetary.currencies.min.js": "dist/monetary.currencies.js",
-          "dist/monetary-with-currencies.min.js": "dist/monetary-with-currencies.js"
+          "dist/monetary.locales.min.js": "dist/monetary.locales.js",
+          "dist/monetary.full.min.js": "dist/monetary.full.js"
         }
       }
     },
