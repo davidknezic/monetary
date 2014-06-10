@@ -20,24 +20,11 @@ module.exports = function (grunt) {
       build: ["build/"]
     },
 
-    preprocess: {
-      monetary: {
-        src: "src/main.js",
-        dest: "build/monetary.js"
-      }
-    },
-
-    template: {
-      monetary: {
-        files: {
-          "build/monetary.js": "build/monetary.js"
-        }
-      }
-    },
-
     jasmine: {
       monetary: {
         src: [
+          "monetary.js",
+          "currencies/*.js"
         ],
         options: {
           keepRunner: true,
@@ -54,7 +41,7 @@ module.exports = function (grunt) {
       },
       minified: {
         files: {
-          'build/monetary.min.js': 'build/monetary.js'
+          'build/monetary.min.js': 'monetary.js'
         }
       }
     },
@@ -64,14 +51,12 @@ module.exports = function (grunt) {
         interrupt: true,
       },
       monetary: {
-        files: ["src/**/*.js"],
+        files: ["monetary.js", "currencies/*.js"],
         tasks: ["default"]
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-preprocess');
-  grunt.loadNpmTasks('grunt-template');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -83,8 +68,6 @@ module.exports = function (grunt) {
   ]);
   grunt.registerTask("build", "Build the library.", [
     "clean:build",
-    "preprocess:monetary",
-    "template:monetary",
     "uglify:minified"
   ]);
   grunt.registerTask("test", "Run the tests.", [
