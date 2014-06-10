@@ -9,6 +9,3 @@ node_modules/
 
 # jasmine
 _SpecRunner.html
-
-# build dir
-build/
