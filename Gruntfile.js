@@ -2,22 +2,39 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    meta: {
-      version: "<%= pkg.version %>",
-      author: "<%= pkg.author %>",
-      license: "<%= pkg.license %>",
-      banner: [
-        "/*!",
-        " * Monetary JavaScript library <%= meta.version %>",
-        " * (c) <%= meta.author %>",
-        " * License: <%= meta.license %>",
-        " */",
-        ""
-      ].join("\n"),
+    clean: {
+      dist: ["dist/"]
     },
 
-    clean: {
-      build: ["build/"]
+    copy: {
+      monetary: {
+        src: "monetary.js",
+        dest: "dist/monetary.js"
+      },
+    },
+
+    concat: {
+      currencies: {
+        src: ["currencies/*.js"],
+        dest: "dist/monetary.currencies.js"
+      },
+      full: {
+        src: ["monetary.js", "currencies/*.js"],
+        dest: "dist/monetary-with-currencies.js"
+      }
+    },
+
+    uglify: {
+      options: {
+        preserveComments: "some"
+      },
+      minified: {
+        files: {
+          "dist/monetary.min.js": "dist/monetary.js",
+          "dist/monetary.currencies.min.js": "dist/monetary.currencies.js",
+          "dist/monetary-with-currencies.min.js": "dist/monetary-with-currencies.js"
+        }
+      }
     },
 
     jasmine: {
@@ -35,31 +52,22 @@ module.exports = function (grunt) {
       }
     },
 
-    uglify: {
-      options: {
-        banner: "<%= meta.banner %>"
-      },
-      minified: {
-        files: {
-          'build/monetary.min.js': 'monetary.js'
-        }
-      }
-    },
-
     watch: {
       options: {
         interrupt: true,
       },
       monetary: {
         files: ["monetary.js", "currencies/*.js"],
-        tasks: ["default"]
+        tasks: ["test"]
       }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask("default", "Build the library and run the tests.", [
@@ -67,7 +75,9 @@ module.exports = function (grunt) {
     "test"
   ]);
   grunt.registerTask("build", "Build the library.", [
-    "clean:build",
+    "clean:dist",
+    "copy:monetary",
+    "concat",
     "uglify:minified"
   ]);
   grunt.registerTask("test", "Run the tests.", [
