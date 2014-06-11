@@ -7,14 +7,15 @@
     factory(root.monetary);
   }
 }(this, function (monetary) {
-  function rounding(amount) {
-    return 0.05;
+  function roundTo5rappen(amount) {
+    return Math.round(amount * 20) / 20;;
   };
 
   return monetary.currency('CHF', {
     symbol: 'Fr.',
     precision: 2,
-    rounding: rounding,
-    base: 1
+    rounding: {
+      default: roundTo5rappen
+    }
   });
 }));

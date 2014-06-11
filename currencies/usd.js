@@ -7,16 +7,8 @@
     factory(root.monetary);
   }
 }(this, function (monetary) {
-  return monetary.locale('fr-ch', {
-    separators: {
-      decimal: '.',
-      grouping: '\''
-    },
-    currencies: {
-      'BTC': 'Bitcoin',
-      'CHF': 'Franc suisse',
-      'HRK': 'Kuna croate',
-      'USD': 'Dollar américain'
-    }
+  return monetary.currency('USD', {
+    symbol: '$',
+    precision: 2
   });
 }));

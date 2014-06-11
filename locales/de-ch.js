@@ -8,5 +8,15 @@
   }
 }(this, function (monetary) {
   return monetary.locale('de-ch', {
+    separators: {
+      decimal: '.',
+      grouping: '\''
+    },
+    currencies: {
+      'BTC': 'Bitcoin',
+      'CHF': 'Schweizer Franken',
+      'HRK': 'Kroatischer Kuna',
+      'USD': 'US-Dollar'
+    }
   });
 }));

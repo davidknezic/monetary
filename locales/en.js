@@ -7,16 +7,16 @@
     factory(root.monetary);
   }
 }(this, function (monetary) {
-  return monetary.locale('fr-ch', {
+  return monetary.locale('en', {
     separators: {
       decimal: '.',
-      grouping: '\''
+      grouping: ','
     },
     currencies: {
       'BTC': 'Bitcoin',
-      'CHF': 'Franc suisse',
-      'HRK': 'Kuna croate',
-      'USD': 'Dollar américain'
+      'CHF': 'Swiss franc',
+      'HRK': 'Croatian kuna',
+      'USD': 'United States dollar'
     }
   });
 }));

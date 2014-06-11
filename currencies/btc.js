@@ -9,7 +9,6 @@
 }(this, function (monetary) {
   return monetary.currency('BTC', {
     symbol: '฿',
-    precision: 8,
-    base: 1
+    precision: 8
   });
 }));
