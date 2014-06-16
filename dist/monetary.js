@@ -248,5 +248,8 @@
     return monetary;
   };
 
+/* EMBED_CURRENCIES */
+/* EMBED_LOCALES */
+
   return monetary;
 }));

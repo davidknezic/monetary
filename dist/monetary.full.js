@@ -248,17 +248,8 @@
     return monetary;
   };
 
-  return monetary;
-}));
-
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.currency('BTC', {
     symbol: '฿',
@@ -267,13 +258,7 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   function roundTo5rappen(amount) {
     return Math.round(amount * 20) / 20;;
@@ -289,13 +274,7 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.currency('HRK', {
     symbol: 'HRK',
@@ -304,13 +283,7 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.currency('USD', {
     symbol: '$',
@@ -318,14 +291,9 @@
   });
 }));
 
+
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.locale('de-ch', {
     separators: {
@@ -342,13 +310,7 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.locale('en', {
     separators: {
@@ -365,13 +327,7 @@
 }));
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['monetary'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(require('monetary'));
-  } else {
-    factory(root.monetary);
-  }
+    factory(monetary);
 }(this, function (monetary) {
   return monetary.locale('fr-ch', {
     separators: {
@@ -385,4 +341,11 @@
       'USD': 'Dollar américain'
     }
   });
+}));
+
+
+    monetary.lang('en');
+
+
+  return monetary;
 }));

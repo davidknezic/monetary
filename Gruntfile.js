@@ -3,7 +3,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      dist: ["dist/*.js"]
+      dist: ["dist/*.js"],
+      tmp: ["tmp/"]
     },
 
     copy: {
@@ -13,19 +14,14 @@ module.exports = function (grunt) {
       },
     },
 
-    concat: {
-      currencies: {
-        src: ["currencies/*.js"],
-        dest: "dist/monetary.currencies.js"
-      },
-      locales: {
-        src: ["locales/*.js"],
-        dest: "dist/monetary.locales.js"
-      },
-      full: {
-        src: ["monetary.js", "currencies/*.js", "locales/*.js"],
-        dest: "dist/monetary.full.js"
-      }
+    embedCurrencies: {
+      src: "monetary.js",
+      dest: "tmp/monetary.js"
+    },
+
+    embedLocales: {
+      src: "tmp/monetary.js",
+      dest: "dist/monetary.full.js"
     },
 
     uglify: {
@@ -35,8 +31,6 @@ module.exports = function (grunt) {
       minified: {
         files: {
           "dist/monetary.min.js": "dist/monetary.js",
-          "dist/monetary.currencies.min.js": "dist/monetary.currencies.js",
-          "dist/monetary.locales.min.js": "dist/monetary.locales.js",
           "dist/monetary.full.min.js": "dist/monetary.full.js"
         }
       }
@@ -46,7 +40,8 @@ module.exports = function (grunt) {
       monetary: {
         src: [
           "monetary.js",
-          "currencies/*.js"
+          "currencies/*.js",
+          "locales/*.js"
         ],
         options: {
           keepRunner: true,
@@ -62,7 +57,7 @@ module.exports = function (grunt) {
         interrupt: true,
       },
       monetary: {
-        files: ["monetary.js", "currencies/*.js"],
+        files: ["monetary.js", "currencies/*.js", "locales/*.js"],
         tasks: ["test"]
       }
     }
@@ -75,20 +70,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask("default", "Build the library and run the tests.", [
-    "build",
-    "test"
-  ]);
-  grunt.registerTask("build", "Build the library.", [
-    "clean:dist",
-    "copy:monetary",
-    "concat",
-    "uglify:minified"
-  ]);
-  grunt.registerTask("test", "Run the tests.", [
-    "jasmine:monetary"
-  ]);
-  grunt.registerTask("develop", "Build and test the library on each save.", [
-    "watch:monetary"
-  ]);
+  grunt.loadTasks("tasks");
+
+  grunt.registerTask("default", ["build", "test"]);
+  grunt.registerTask("build", ["clean:dist", "copy:monetary", "embedCurrencies", "embedLocales", "clean:tmp", "uglify:minified"]);
+  grunt.registerTask("test", ["jasmine:monetary"]);
+  grunt.registerTask("develop", ["watch:monetary"]);
 };
