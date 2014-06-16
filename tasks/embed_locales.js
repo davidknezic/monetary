@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       content += transformFile(file) + '\n';
     });
 
-    content += "\n    monetary.lang(\'en\');\n";
+    content += "\n    monetary.locale(\'en\');\n";
 
     return content;
   }

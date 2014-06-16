@@ -344,7 +344,7 @@
 }));
 
 
-    monetary.lang('en');
+    monetary.locale('en');
 
 
   return monetary;
