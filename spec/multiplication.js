@@ -1,0 +1,2 @@
+describe("Multiplication operation", function () {
+});
